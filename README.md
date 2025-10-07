@@ -1,14 +1,13 @@
 # How to Get Started with Embodied AI Research
 
-© PKU EPIC Lab. All rights reserved. Commercial distribution prohibited.
-
+© PKU EPIC Lab. All rights reserved. Commercial distribution prohibited.<br>
 © PKU EPIC Lab. 版权所有。禁止商业传播。
 
 [原文主页](https://jiangranlv.notion.site/How-to-Get-Started-with-Embodied-AI-Research-252a467c9b60804d85dcfeffcc7771fb)
 
-**作者：吕江燃**
-**修订：**
-**指导老师：王鹤，弋力**
+**作者：吕江燃**<br>
+**修订：**<br>
+**指导老师：王鹤，弋力**<br>
 
 ## O、前言
 
