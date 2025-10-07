@@ -217,8 +217,11 @@ https://playground.mujoco.org/
 
 ### 1. Graphics
 
-图形学在robotics领域应用比较多的两大类技术是simulation和rendering
-系统性学习simulation的推荐课程： Games 103
+图形学在机器人与具身智能中的两大重要应用是 **simulation（仿真）** 与 **rendering（渲染）**。
+
+- **Simulation**：用于搭建虚拟的物理交互环境，是机器人强化学习、控制算法和策略验证的重要工具。如上述IsaacLab等
+- **Rendering**：用于生成高质量的图像或视频，支撑感知模型（如视觉Transformer）的训练与评估。例如：**Blender**：开源的三维建模与渲染软件。
+- 系统性学习图形学推荐课程：**Games 101, 103**
 
 ### 2. Hardware
 
