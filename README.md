@@ -5,7 +5,7 @@
 
 [原文主页](https://jiangranlv.notion.site/How-to-Get-Started-with-Embodied-AI-Research-252a467c9b60804d85dcfeffcc7771fb)
 
-**作者：吕江燃,张嘉曌，邓胜亮，陈嘉毅，严汨**<br>
+**作者：吕江燃, 张嘉曌，邓胜亮，陈嘉毅，严汨**<br>
 **指导老师：王鹤，弋力**<br>
 
 ## O、前言
