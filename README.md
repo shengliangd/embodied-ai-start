@@ -265,3 +265,6 @@ Sharp Mind：戳穿别人工作的包装，看到本质
 Presentation： 包装自己的工作
 
 Warm Mind：不要一味的批评别人的工作，能够欣赏到别人的亮点
+
+## 相关仓库
+https://github.com/TianxingChen/Embodied-AI-Guide
