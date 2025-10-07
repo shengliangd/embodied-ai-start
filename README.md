@@ -246,25 +246,20 @@ Diffusion Model
 ### 4. Foundation Models
 
 - **CLIP**
-    
     通过 **对比学习 (contrastive learning)** 将图像与文本映射到共享的多模态语义空间，成为视觉语言理解的核心模型。
     
 - **DINO / DINOv2**
-    
     采用 **自监督学习 (self-supervised learning)** 提取图像的语义表示，在机器人视觉任务中常用于特征提取与场景理解。
     
 - **LLM（Large Language Model）**
-    
     通过大规模文本训练获得强大的语言理解与推理能力，是具身智能中语言规划与高层决策的重要基石。代表模型包括：**GPT / Claude / Gemini**：通用语言推理模型。
     
 
 ## 八、(Optional) 科研工作中的必备能力
 
-Sharp Mind：戳穿别人工作的包装，看到本质
-
-Presentation： 包装自己的工作
-
-Warm Mind：不要一味的批评别人的工作，能够欣赏到别人的亮点
+Sharp Mind：戳穿别人工作的包装，看到本质<br>
+Presentation： 包装自己的工作<br>
+Warm Mind：不要一味的批评别人的工作，能够欣赏到别人的亮点<br>
 
 ## 相关仓库
 https://github.com/TianxingChen/Embodied-AI-Guide
