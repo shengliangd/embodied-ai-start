@@ -154,7 +154,7 @@ https://playground.mujoco.org/
 
 当前研究动机主要分为两条路线：
 
-1. **灵巧性导向（Dexterity-oriented）**：追求复杂高难度动作的实现（如跑、跳、翻滚、投篮），代表工作如 **ASAP（Tairan He）**。
+1. **灵巧性导向（Agility-oriented）**：追求复杂高难度动作的实现（如跑、跳、翻滚、投篮），代表工作如 **ASAP（Tairan He）**。
 2. **泛化性导向（Generalization-oriented）**：强调“一套策略（One Policy）”能适应多场景任务，实现跨环境的鲁棒运动，如 **GMT**、**UniTracker（Xiaolong Wang）**。
 
 ## 六、基于learning的主流方案
