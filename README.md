@@ -129,7 +129,7 @@ https://playground.mujoco.org/
 
 ### 3. Navigation
 
-**Navigation** 研究机器人如何在环境中移动，以最优路径抵达目标位置，同时实现避障。从任务表述（formulation）上，与自动驾驶有相似之处。传统导航系统通常融合多种传感器（RGB相机、深度相机、LiDAR、IMU等），但传感器越多并不一定更好，不同传感器都伴随特定噪声。
+**Navigation** 导航研究机器人如何在物理环境中移动，以完成给定任务。导航能力是一种综合能力，从高层次来看，包括对视觉、深度信息和指令的理解，以及对历史信息（如地图、Tokens 等）的建模；从低层次来看，还包含路径规划与避障。导航通常涉及场景级别的移动，是硬件、传感器与控制算法综合能力的体现。
 
 常见任务包括：
 
@@ -139,7 +139,15 @@ https://playground.mujoco.org/
 - **Embodied Question Answering (EQA)**：机器人需在环境中探索、感知并回答与场景相关的问题（如“卧室里有几张床？”）。
 - **Tracking**：机器人持续感知并跟随动态目标（如人或移动物体）。
 
-**Unified Embodied Navigation**：最新研究趋势是将多种导航任务统一建模，常使用纯RGB输入，并将目标描述转换为语言指令。代表性工作：**Uni-Navid**。
+常见做法：
+- **Map-based Navigation**, 基于地图的导航算法会利用深度图，里程计等信息构建地图，从而基于地图规划路径完成导航任务。基于地图的方法在静态或者易结构化的场景下表现非常好。相关工作包括: [Object Goal Navigation using Goal-Oriented Semantic Exploration
+](https://arxiv.org/abs/2007.00643)
+- **Prompting-Large-Model Navigation**，通过对物理世界进行解释得到prompting，然后以现成（off-the-shelf）的大模型作为规划决策的中心。这种方法不需要训练复杂的大模型，且可以利用大模型的智能优势实现复杂的导航任务。相关工作包括: [NavGPT: Explicit Reasoning in Vision-and-Language Navigation with Large Language Models
+](https://arxiv.org/abs/2305.16986), [CogNav: Cognitive Process Modeling for Object Goal Navigation with LLMs
+](https://yhancao.github.io/CogNav/)
+- **Video-based VLM Navigation**, 通过端到端训练基于视频输入的视觉语言大模型，通过tokens来建模导航历史，和用VLM直接输出未来导航动作。相关工作[NaVid: Video-based VLM Plans the Next Step for Vision-and-Language Navigation](https://pku-epic.github.io/NaVid/)
+
+**Unified Embodied Navigation**：最新研究趋势是将多种导航任务统一建模，常使用纯RGB输入，并将目标描述转换为语言指令。代表性工作：**[Uni-Navid](https://pku-epic.github.io/Uni-NaVid/)**，统一多种导航任务。**[NavFoM](https://pku-epic.github.io/NavFoM-Web/)**,统一导航任务和embodiment。
 
 ### 4. Locomotion
 
