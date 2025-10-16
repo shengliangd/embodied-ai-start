@@ -151,19 +151,23 @@ https://playground.mujoco.org/
 
 ### 4. Locomotion
 
-**Locomotion** 强调机器人在多样环境中的运动与机动能力。
+**Locomotion** 强调机器人在多样环境中的运动与机动能力。狭义上通常指基于 **Whole-body Control (WBC)** 的控制方法，用于实现 **四足（Quadrupedal）** 与 **双足（Bipedal / Humanoid）** 运动。
 
-狭义上通常指基于 **Whole-body Control (WBC)** 的控制方法，用于实现 **四足（Quadrupedal）** 与 **双足（Bipedal / Humanoid）** 运动。
+技术路线上，2019年以前主要靠传统的MPC控制实现（例如波士顿动力），目前主流的方法是Sim2Real RL, 以下主要讨论这类主流范式。
+既然谈及RL，又分为
+- **Learning from manually designed reward** (自己写reward提供desired behavior) ([WoCoCo](https://arxiv.org/pdf/2406.06005)【任务目的：通过reward设计让机器人完成某些特定任务】
+- **Learning from human data** (data提供desired behavior，也叫做tracking)【主流】 (ASAP)【任务目的：模仿某一段人类数据中的动作（输入：现在的state和目标的state；输出这一步的action）】
 
-常见方法分为两类：
+如果人形机器人能完成对特定人类动作的tracking，那么接下来就有了一个很主流的研究方向，general motion tracking -> whole-body teleopration，人在做任何一段动作的时候，机器人可以复现人的动作（这里的难点就很多了，动作输入形式的多样性，减少延时，长程复现人的动作，复现的精准度）
+这一系列的工作是H2O, OmniH2O, HOMIE, TWIST, CLONE, HOVER, GMT, Unitrack等等，至此Control最基本的问题应该well-defined了
 
-- **Tracking-based Methods**：实现对人类参考轨迹的跟踪，常用于遥操作系统，如 **OpenWBT**、**CLONE**。
-- **Non-tracking Methods**：通过设计奖励函数直接学习特定技能，如跑酷、跳跃等机器人特技（Robot Parkour Learning）。
+下一个阶段会涉及到一点除了control之外的东西，就是
+- 引入【视觉】实现户外自主化（perceptive locomotion）；例如，根据视觉来进行上楼梯，迈台阶，难点：vision sim2real 【visualmimic】
+- 引入【物体】实现loco-manipulation；例如人型机器人搬箱子，难点：物体的dynamics【HDMI】
+- 对上述两种task的组合
+- 强调【语义的泛化性】，希望能根据各种各样的场景/物体【自主决策】做出相应的动作（whole body VLA）【leverb】
+- 强调一些特殊的capability（比如HuB做极端平衡，Any2Track受很大的力干扰摔不倒, Hitter做一个特殊的乒乓球task，spi-active做sim2real对齐让机器人能走直线）
 
-当前研究动机主要分为两条路线：
-
-1. **灵巧性导向（Agility-oriented）**：追求复杂高难度动作的实现（如跑、跳、翻滚、投篮），代表工作如 **ASAP（Tairan He）**。
-2. **泛化性导向（Generalization-oriented）**：强调“一套策略（One Policy）”能适应多场景任务，实现跨环境的鲁棒运动，如 **GMT**、**UniTracker（Xiaolong Wang）**。
 
 ## 六、基于learning的主流方案
 
