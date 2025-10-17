@@ -28,11 +28,11 @@
 
 - 拥有多模态感知能力（视觉、触觉、语音等）
 - 能够执行动作并影响环境
-- 学习往往是通过**与环境交互**而不是被动监督完成的
+- 学习可以通过**与环境交互**而不仅仅是被动监督完成
 
 ### 2. 具身智能与其他AI的区别 (Differences from Traditional AI)
 
-具身智能与传统 AI 的主要区别在于它的**主动性、交互性，以及对数据的依赖方式**。传统 AI 可以利用互联网上丰富的图像、文本、语音等大规模数据集进行训练（参考LLM的成功），而具身智能体必须通过与环境的真实交互来收集数据，这使得数据获取代价高昂且规模有限。一言以蔽之，数据问题是具身智能目前最大的bottleneck。那么很自然的两个关键问题是，
+具身智能与传统 AI 的主要区别在于它的**主动性、交互性，以及对动作数据的依赖**。传统 AI 可以利用互联网上丰富的图像、文本、语音等大规模数据集进行训练（参考LLM的成功），而具身智能体所需的动作数据并不像图像、文本等有大规模的记录，且与本体强相关，必须通过与环境的真实交互来收集数据，这使得数据获取代价高昂且规模有限。一言以蔽之，数据问题是具身智能目前最大的bottleneck。那么很自然的两个关键问题是，
 
 - 如何scale up机器人数据？
 例如：GraspVLA（在仿真中以合成的方式猛猛造）, pi0和AgiBot-World（在真实世界猛猛遥操采）, UMI和AirExo（可穿戴设备，如外骨骼的高效数据采集装置）
@@ -81,7 +81,7 @@ Berkeley的RL课程，涵盖了Imitation Learning，Online RL, Offline RL等Poli
 
 **对于simulation的掌握**：需要至少一种simulation框架，通过阅读tutorial跑他的example，加深对robotics的理解，不要等到上真机才发现有很多坑，会有很大的安全隐患
 
-IssacLab （Recommand)
+IssacLab (Recommend)
 
 https://isaac-sim.github.io/IsaacLab/main/index.html
 
@@ -169,33 +169,16 @@ https://playground.mujoco.org/
 - 强调一些特殊的capability（比如HuB做极端平衡，Any2Track受很大的力干扰摔不倒, Hitter做一个特殊的乒乓球task，spi-active做sim2real对齐让机器人能走直线）
 
 
-## 六、基于learning的主流方案
+## 六、基于learning的主要研究方向
 
 ### 1. Imitation Learning
 
-该方向主要聚焦于 **小模型 (small-model)** 场景：在给定数量有限的机器人轨迹数据集上，学习一个策略 (policy) 来完成特定任务，并在一定范围内实现泛化，例如在同一张桌面上对不同物体的泛化操控。
-
-- **传统方法**：Behavior Cloning、DAgger
-- **当前主流方法**：**ACT**、**Diffusion Policy**
-    
-    这些方法通过引入时序建模与生成式策略学习，有效提升了模仿学习在视觉控制任务中的表现。
-    
+模仿学习（Imitation Learning）主要关注如何从专家策略产生的轨迹数据进行学习。主要的学习范式包括 Behavior Cloning 和 DAgger，前者专注于让模型从给定的数据集中学习专家行为，而后者则通过模型执行任务、专家策略给出失败/次优状态下的纠正，收集产生的新数据，迭代优化模型，从而缓解数据分布偏移的问题。
+近年来，ACT、Diffusion Policy 等工作引入了时序建模和生成式策略学习，有效提升了模仿学习在视觉控制任务中的表现。RT-2、OpenVLA、pi_0、pi_0.5 等方法则结合了大语言模型（LLM）、视觉语言模型（VLM）的预训练与后训练，展现出一定的跨任务泛化能力和语义理解能力。
 
 ---
 
-### 2. Vision-Language-Action Models (VLA)
-
-该方向属于 **大模型 (foundation model)** 范式，旨在将视觉、语言与动作建模统一在同一框架下，实现通用的具身智能。
-
-- **代表性工作**：
-    - **OpenVLA**：第一个开源且易于follow的VLA。
-    - **Pi0 / Pi0.5**：目前公认最work的VLA，10K+ hours teleop data训练的。
-    - **GraspVLA**：基于纯仿真数据的抓取任务的VLA。
-    - **RDT**：纯diffusion的VLA架构
-
----
-
-### 3. Sim-to-Real Reinforcement Learning (Distillation)
+### 2. Sim-to-Real Reinforcement Learning (Distillation)
 
 **从仿真到真实 (Sim-to-Real)** 是强化学习在具身智能中的关键挑战之一。
 
@@ -205,7 +188,7 @@ https://playground.mujoco.org/
 
 ---
 
-### 4. Real-World Reinforcement Learning
+### 3. Real-World Reinforcement Learning
 
 **Real-world RL** 指直接在现实环境中进行探索式学习。
 
@@ -213,6 +196,18 @@ https://playground.mujoco.org/
 
 - **从零开始的真实世界强化学习**：**Hil-Serl**
 - **基于VLA的真实世界微调 (Fine-tuning)**：部分近期工作尝试利用预训练VLA进行现实强化学习微调，但仍处于早期探索阶段。
+
+---
+
+### 4. Vision-Language-Action Models (VLA)
+
+该方向属于 **大模型 (foundation model)** 范式，旨在将视觉、语言与动作建模统一在同一框架下，实现通用的具身智能。
+
+- **代表性工作**：
+    - **OpenVLA**：第一个开源且易于follow的VLA。
+    - **Pi0 / Pi0.5**：目前公认最work的VLA，10K+ hours teleop data训练的。
+    - **GraspVLA**：基于纯仿真数据的抓取任务的VLA。
+    - **RDT**：纯diffusion的VLA架构
 
 ---
 
@@ -251,11 +246,13 @@ https://playground.mujoco.org/
     用于精确追踪人体或机器人位姿，常用于收集示教数据或标定
     
 
-### 3. Advanced Model
+### 3. Models
 
-Transformer
+- **Transformer-based LLMs and VLMs**
+    当前大部分具身智能模型基于预训练的 LLM/VLM，而 LLM/VLM 大多基于 transformer 架构，熟练掌握它们的基本结构、了解它们如何处理多模态输入、attention 机制如何工作等非常重要。
 
-Diffusion Model
+- **Diffusion、Flow Matching**
+    由于能够有效建模多峰分布及提高推理速度，在 VLA 模型架构中被广泛采用。
 
 ### 4. Foundation Models
 
@@ -271,9 +268,11 @@ Diffusion Model
 
 ## 八、(Optional) 科研工作中的必备能力
 
-Sharp Mind：戳穿别人工作的包装，看到本质<br>
-Writing and Presentation： 包装自己的工作，别让别人拆穿<br>
-Warm Mind：不要一味的批评别人的工作，能够欣赏到别人的亮点<br>
+Sharp Mind：戳穿别人工作的包装，看到本质
+
+Writing and Presentation： 包装自己的工作，别让别人拆穿
+
+Warm Mind：不要一味的批评别人的工作，能够欣赏到别人的亮点
 
 ## 相关仓库
 https://github.com/TianxingChen/Embodied-AI-Guide
